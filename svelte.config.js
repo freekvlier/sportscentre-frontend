@@ -1,10 +1,23 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from "@sveltejs/adapter-static"; 
+// was "@sveltejs/adapter-auto"
 
-/** @type {import('@sveltejs/kit').Config} */
+const dev = "production" === "development";
+
+/** @type {import(""@sveltejs/kit").Config} */
 const config = {
-	kit: {
-		adapter: adapter()
-	}
+    kit: {
+        adapter: adapter({
+            pages: "docs",
+            assets: "docs",
+			fallback: null,
+			precompress: false,
+			strict: true
+        }),
+        paths: {
+            // change below to your repo name
+            base: dev ? "" : "/sportscentre-frontend",
+        },
+    }
 };
 
 export default config;
