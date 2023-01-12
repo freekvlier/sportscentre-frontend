@@ -47,10 +47,10 @@
           <td>
             <ul>
               {#each workout.exercises as exercise}
-              <li>{exercise.exerciseType}</li>
-              <li>{exercise.weight}</li>
-              <li>{exercise.sets}</li>
-              <li>{exercise.reps}</li>
+              <li class="excercisetitle">{exercise.exerciseType}</li>
+              <li>Weight: {exercise.weight}</li>
+              <li>Sets: {exercise.sets}</li>
+              <li>Reps: {exercise.reps}</li>
               {/each}
             </ul>
           </td>
@@ -72,5 +72,9 @@
     }
     th {
       background-color: #dddddd;
+    }
+    .excercisetitle {
+      list-style-type: none;
+      font-weight: bold;
     }
   </style>
