@@ -1,47 +1,25 @@
-name: Github Pages Deploy
-
+name: Deploy to GitHub pages
 on:
   push:
-    branches:
-      - "main"
-
-env:
-  REGISTRY: ghcr.io
-  FRONTEND_TAG_PUSH: ghcr.io/piet2001/sportscentre-frontend:${{ github.sha }}      
-
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
-      - name: Install and build
-        run: npm install && npm run build
+    - name: Generate static VuePress files
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - run: npm ci
+    - run: npm run build
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: main # The branch the action should deploy to.
-          folder: docs # The folder the action should deploy.  ''
-
-      - name: Build & push  
-        uses: docker/build-push-action@v2
-        with:
-          push: true
+    - name: Force push to destination branch
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        force: true
+        directory: ./docs
