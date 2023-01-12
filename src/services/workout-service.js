@@ -1,10 +1,10 @@
 import axios from "axios";
 import { protectedResources, getAccessToken } from "../auth";
 
-const url = protectedResources.apiUser.endpoint;
+const url = protectedResources.apiWorkout.endpoint;
 
-export async function loginCheck() {
-    var response = await axios.get(url + "login", {
+export async function getWorkouts() {
+    var response = await axios.get(url, {
         headers: { Authorization: `Bearer ${await getBearer()}` },
       });
     return response.data;

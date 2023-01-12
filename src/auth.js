@@ -179,4 +179,7 @@ export const protectedResources = {
     apiUser: {
         endpoint: process.env.NODE_ENV === 'production' ? "http://{INSERT IP}/user/" : "http://localhost:8080/user/",
     },
+    apiWorkout: {
+        endpoint: process.env.NODE_ENV === 'production' ? "http://{INSERT IP}/workout/" : "http://localhost:8080/workout/",
+    },
 }
