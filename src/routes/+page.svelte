@@ -1,15 +1,25 @@
 <script>
-    import {signIn, myMSALObj, tokenRequest, loggedInCheck, } from '../auth.js';
+    import {signIn, signOut, myMSALObj, tokenRequest, loggedInCheck, } from '../auth.js';
     import {loginCheck} from '../services/user-service.js'
     import {getWorkouts} from '../services/workout-service.js'
     import { onMount } from 'svelte';
 
     let workoutList = [];
     let userLoggedin = false;
+    let workout = {name: "", exercisename: "", weight: 0, sets: 0, reps: 0}; //New workout creation
+
+    onMount(() => {
+      setTimeout(() => {loggedInCheck().then(test => userLoggedin = test)}, 400);
+    });
 
     function login(){
         signIn();
         loginCheck();
+    }
+
+    function logout(){
+        signOut();
+        userLoggedin = false;
     }
 
     function fetchWorkouts(){
@@ -18,11 +28,6 @@
         })        
     }
 
-    onMount(() => {
-      setTimeout(() => {loggedInCheck().then(test => userLoggedin = test)}, 400);
-    });
-
-    let workout = {name: "", exercisename: "", weight: 0, sets: 0, reps: 0};
     function handleSubmit(event) {
       event.preventDefault();
       // Code to handle form submission here
@@ -31,8 +36,15 @@
 </script>
 
 <h1>SportsCentre</h1>
-<button on:click={login}>Login</button>
-<button on:click={fetchWorkouts}>Fetch Workouts</button>
+
+
+{#if userLoggedin == true}
+  <button on:click={fetchWorkouts}>Fetch Workouts</button>
+  <button on:click={logout}>Logout</button>
+{:else}
+  <button on:click={login}>Login</button>
+{/if}
+
 
 {#if userLoggedin == true}
   <form on:submit={handleSubmit}>
