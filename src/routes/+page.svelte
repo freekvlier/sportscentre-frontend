@@ -5,6 +5,7 @@
     import { onMount } from 'svelte';
 
     let workoutList = [];
+    let userLoggedin = false;
 
     function login(){
         signIn();
@@ -18,47 +19,75 @@
     }
 
     onMount(() => {
-        loggedInCheck().then(test => console.log(test));
+      setTimeout(() => {loggedInCheck().then(test => userLoggedin = test)}, 400);
     });
+
+    let workout = {name: "", exercisename: "", weight: 0, sets: 0, reps: 0};
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Code to handle form submission here
+      console.log(workout);
+    }
 </script>
 
 <h1>SportsCentre</h1>
-<p>Portal</p>
-<button on:click={login}>
-	Login
-</button>
-
+<button on:click={login}>Login</button>
 <button on:click={fetchWorkouts}>Fetch Workouts</button>
 
-{#if workoutList.length > 0}
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Exercises</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each workoutList as workout}
+{#if userLoggedin == true}
+  <form on:submit={handleSubmit}>
+    <label for="workoutName">Workout Name:</label>
+    <input type="text" id="workoutName" bind:value={workout.name}>
+
+    <label for="exerciseName">Exercise Name:</label>
+    <input type="text" id="exerciseName" bind:value={workout.exercisename}>
+
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" bind:value={workout.weight}>
+
+    <label for="sets">Sets:</label>
+    <input type="number" id="sets" bind:value={workout.sets}>
+
+    <label for="reps">Reps:</label>
+    <input type="number" id="reps" bind:value={workout.reps}>
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+  {#if workoutList.length > 0}
+  <h2>Workouts list</h2>
+    <table>
+      <thead>
         <tr>
-          <td>{workout.name}</td>
-          <td>{workout.date}</td>
-          <td>
-            <ul>
-              {#each workout.exercises as exercise}
-              <li class="excercisetitle">{exercise.exerciseType}</li>
-              <li>Weight: {exercise.weight}</li>
-              <li>Sets: {exercise.sets}</li>
-              <li>Reps: {exercise.reps}</li>
-              {/each}
-            </ul>
-          </td>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Exercises</th>
         </tr>
-      {/each}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {#each workoutList as workout}
+          <tr>
+            <td>{workout.name}</td>
+            <td>{workout.date}</td>
+            <td>
+              <ul>
+                {#each workout.exercises as exercise}
+                <li class="excercisetitle">{exercise.exerciseType}</li>
+                <li>Weight: {exercise.weight}</li>
+                <li>Sets: {exercise.sets}</li>
+                <li>Reps: {exercise.reps}</li>
+                {/each}
+              </ul>
+            </td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {/if}
 {/if}
+
+
 
 <style>
     table {
@@ -76,5 +105,37 @@
     .excercisetitle {
       list-style-type: none;
       font-weight: bold;
+    }
+
+    form {
+      margin: 0 auto;
+      padding: 2rem;
+      width: 80%;
+      border-radius: 1rem;
+    }
+    label {
+      margin-bottom: 0.5rem;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-bottom: 2px solid #ddd;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #060505;
+      color: rgb(255, 255, 255);
     }
   </style>

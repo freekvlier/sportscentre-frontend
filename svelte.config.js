@@ -13,9 +13,8 @@ const config = {
 			precompress: false,
 			strict: true
         }),
-        paths: {
-            // change below to your repo name
-            base: dev ? "" : "/sportscentre-frontend",
+		paths: {
+            base: "/sportscentre-frontend",
         },
     }
 };
