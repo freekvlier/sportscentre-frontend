@@ -22,7 +22,7 @@
     });
 </script>
 
-<h1>SportsCentre</h1>
+<h1>SportsCentre1</h1>
 <p>Portal</p>
 <button on:click={login}>
 	Login
