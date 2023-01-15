@@ -17,13 +17,6 @@ export async function getUser(token) {
   return response.data;
 }
 
-export async function checkUser(token) {
-  var response = await axios.get(url + "login/check", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response.data;
-}
-
 async function getBearer(){
     let AuthObject = await getAccessToken();
     return AuthObject.accessToken;

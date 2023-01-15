@@ -1,12 +1,13 @@
 <script>
     import {signIn, signOut, myMSALObj, tokenRequest, loggedInCheck, } from '../auth.js';
     import {loginCheck} from '../services/user-service.js'
-    import {getWorkouts} from '../services/workout-service.js'
+    import {getWorkouts, saveWorkout} from '../services/workout-service.js'
     import { onMount } from 'svelte';
 
     let workoutList = [];
     let userLoggedin = false;
-    let workout = {name: "", exercisename: "", weight: 0, sets: 0, reps: 0}; //New workout creation
+    let workout = {name: "", exercises: []}; //New workout creation
+    let exercise = {name: "", weight: 0, sets: 0, reps: 0}; //New workout creation
 
     onMount(() => {
       setTimeout(() => {loggedInCheck().then(test => userLoggedin = test)}, 400);
@@ -24,14 +25,14 @@
 
     function fetchWorkouts(){
         getWorkouts().then(workouts => {
+            console.log(workouts);
             workoutList = workouts;
         })        
     }
 
     function handleSubmit(event) {
-      event.preventDefault();
-      // Code to handle form submission here
-      console.log(workout);
+      workout.exercises.push(exercise);
+      console.log(saveWorkout(workout));
     }
 </script>
 
@@ -52,16 +53,16 @@
     <input type="text" id="workoutName" bind:value={workout.name}>
 
     <label for="exerciseName">Exercise Name:</label>
-    <input type="text" id="exerciseName" bind:value={workout.exercisename}>
+    <input type="text" id="exerciseName" bind:value={exercise.name}>
 
     <label for="weight">Weight:</label>
-    <input type="number" id="weight" bind:value={workout.weight}>
+    <input type="number" id="weight" bind:value={exercise.weight}>
 
     <label for="sets">Sets:</label>
-    <input type="number" id="sets" bind:value={workout.sets}>
+    <input type="number" id="sets" bind:value={exercise.sets}>
 
     <label for="reps">Reps:</label>
-    <input type="number" id="reps" bind:value={workout.reps}>
+    <input type="number" id="reps" bind:value={exercise.reps}>
 
     <button type="submit">Submit</button>
   </form>
@@ -85,7 +86,7 @@
             <td>
               <ul>
                 {#each workout.exercises as exercise}
-                <li class="excercisetitle">{exercise.exerciseType}</li>
+                <li class="excercisetitle">{exercise.name}</li>
                 <li>Weight: {exercise.weight}</li>
                 <li>Sets: {exercise.sets}</li>
                 <li>Reps: {exercise.reps}</li>
@@ -140,7 +141,7 @@
       width: 100%;
       padding: 1rem;
       margin-top: 1rem;
-      background-color: #ffffff;
+      background-color: #b0b0b0;
       color: rgb(0, 0, 0);
       border: none;
       border-radius: 0.5rem;
