@@ -1,19 +1,16 @@
-name: E2E on Chrome
+name: Cypress Tests
 
 on: [push]
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v3
-        with:
-          project: ./site
-          browser: chrome
-          build: yarn build
-          start: yarn start
-          wait-on: "http://localhost:3000"
+ Cypress-Test:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout GitCode
+       uses: actions/checkout@v2
+ 
+     - name: Run Cypress Test
+       uses: cypress-io/github-action@v4
+       with:
+         command: npx cypress run
+         browser: chrome
