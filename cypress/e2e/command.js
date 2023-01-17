@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import { login } from "./auth";
 
 let cachedTokenExpiryTime = new Date().getTime();
@@ -16,17 +15,3 @@ Cypress.Commands.add("login", () => {
     cachedTokenExpiryTime = new Date().getTime() + 50 * 60 * 1000;
   });
 });
-
-// context("sampleTest", () => {
-//   beforeEach(function () {
-//     cy.login();
-//   });
-// });
-
-describe('template spec', () => {
-  it('passes', () => {
-    cy.login();
-    cy.visit('https://freekvlier.github.io/sportscentre-frontend/');
-    debugger;
-  })
-})
