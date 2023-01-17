@@ -19,6 +19,7 @@
 	"type": "module",
 	"dependencies": {
 		"@azure/msal-browser": "^2.32.2",
-		"axios": "^1.2.2"
+		"axios": "^1.2.2",
+		"jsonwebtoken": "^9.0.0"
 	}
 }
