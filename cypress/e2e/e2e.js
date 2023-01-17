@@ -17,27 +17,24 @@ Cypress.Commands.add("login", () => {
   });
 });
 
-// context("sampleTest", () => {
-//   beforeEach(function () {
-//     cy.login();
-//   });
-// });
-
-describe('template spec', () => {
-  it('passes', () => {
-    cy.login();
-    cy.visit('https://freekvlier.github.io/sportscentre-frontend/');
-    debugger;
-  })
-})
-
-
-describe('post', () => {
+describe('Login test', () => {
   beforeEach(function () {
     cy.login();
   });
 
-  it('Successfully post workout', () => {
+  it('Successfully logged in', () => {
+    cy.get('button[type="submit"]').should("be.visible").click()
+    cy.get('#fetchWorkouts').should("be.visible")
+    cy.get('#logout').should("be.visible")
+  })
+})
+
+describe('Post and getting workout', () => {
+  beforeEach(function () {
+    cy.login();
+  });
+
+  it('Successfully post and fetch workout', () => {
     cy.get("#workoutName").should("be.visible").type("workout1")
     cy.get("#exerciseName").should("be.visible").type("excercise1")
     cy.get("#weight").should("be.visible").type("1")
@@ -47,5 +44,16 @@ describe('post', () => {
     
     cy.get('#fetchWorkouts').should("be.visible").click()
     cy.contains("workout1").should("be.visible")
+  })
+})
+
+describe('logout test', () => {
+  beforeEach(function () {
+    cy.login();
+  });
+
+  it('Logout', () => {
+    cy.get('#fetchWorkouts').should("be.visible").click()
+    cy.get('#logout').should("not.be.visible")
   })
 })

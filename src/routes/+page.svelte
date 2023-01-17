@@ -41,7 +41,7 @@
 
 {#if userLoggedin == true}
   <button id="fetchWorkouts" on:click={fetchWorkouts}>Fetch Workouts</button>
-  <button on:click={logout}>Logout</button>
+  <button id="logout" on:click={logout}>Logout</button>
 {:else}
   <button on:click={login}>Login</button>
 {/if}
