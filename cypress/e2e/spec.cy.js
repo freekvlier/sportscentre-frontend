@@ -45,6 +45,7 @@ describe('post', () => {
     cy.get("#reps").should("be.visible").type("3")
     cy.get('button[type="submit"]').should("be.visible").click()
     
+    cy.get('#fetchWorkouts').should("be.visible").click()
     cy.contains("workout1").should("be.visible")
   })
 })
