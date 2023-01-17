@@ -30,3 +30,21 @@ describe('template spec', () => {
     debugger;
   })
 })
+
+
+describe('post', () => {
+  beforeEach(function () {
+    cy.login();
+  });
+
+  it('Successfully post workout', () => {
+    cy.get("#workoutName").should("be.visible").type("workout1")
+    cy.get("#exerciseName").should("be.visible").type("excercise1")
+    cy.get("#weight").should("be.visible").type("1")
+    cy.get("#sets").should("be.visible").type("2")
+    cy.get("#reps").should("be.visible").type("3")
+    cy.get('button[type="submit"]').should("be.visible").click()
+    
+    cy.contains("workout1").should("be.visible")
+  })
+})
