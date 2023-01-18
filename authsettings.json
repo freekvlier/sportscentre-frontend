@@ -1,0 +1,8 @@
+{
+	"authority": "https://login.microsoftonline.com/644617e7-1801-4ee3-838c-2765e373cfde",
+	"clientId": "5d4df099-bb70-4887-8617-ee02e00ced9a",
+	"clientSecret": "WKk8Q~gWf4Nt1lL78ZyDsZbNiKMjW~DADtAt3ado",
+	"apiScopes": "api://5d4df099-bb70-4887-8617-ee02e00ced9a/User.Read",
+	"username": "guest@sportscentreapp.onmicrosoft.com",
+	"password": "qk^U2@EULB#^e8Bs" 
+}

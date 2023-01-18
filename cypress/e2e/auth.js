@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import { decode } from "jsonwebtoken";
-import authSettings from "./authsettings.json";
+import authSettings from "./../../authsettings.json";
 
 const {
   authority,
