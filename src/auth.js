@@ -177,9 +177,9 @@ function seeProfile() {
 
 export const protectedResources = {
     apiUser: {
-        endpoint: process.env.NODE_ENV === 'production' ? "http://35.195.43.5/user/" : "http://localhost:8080/user/",
+        endpoint: process.env.NODE_ENV === 'production' ? "http://34.78.242.201/user/" : "http://localhost:8080/user/",
     },
     apiWorkout: {
-        endpoint: process.env.NODE_ENV === 'production' ? "http://35.195.43.5/workout/" : "http://localhost:8080/workout/",
+        endpoint: process.env.NODE_ENV === 'production' ? "http://34.78.242.201/workout/" : "http://localhost:8080/workout/",
     },
 }
