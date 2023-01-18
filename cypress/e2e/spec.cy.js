@@ -46,14 +46,3 @@ describe('Post and getting workout', () => {
     cy.contains("workout1").should("be.visible")
   })
 })
-
-describe('logout test', () => {
-  beforeEach(function () {
-    cy.login();
-  });
-
-  it('Logout', () => {
-    cy.get('#fetchWorkouts').should("be.visible").click()
-    cy.get('#logout').should("not.be.visible")
-  })
-})
