@@ -1,38 +1,33 @@
-# create-svelte
+# SportsCentre Frontend
+Dit is de frontend van SportsCentre, de sporttracking- en deelapplicatie ontwikkeld als onderdeel van het individuele project tijdens semester 6 van de studie Software Engineering aan Fontys Hogescholen Eindhoven. Het frontend-gedeelte van dit project is niet uitgebreid ontwikkeld, omdat de primaire focus lag op het bouwen van de backend-architectuur. 
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Technologieën
+#### Frontend Framework: Svelte
+Voor de frontend van het project is gekozen voor Svelte. Het heeft een lage leercurve, hoge prestaties, goede compatibiliteit, een snelgroeiende community en is snel in ontwikkeling. Dit maakte Svelte een ideale keuze voor het frontend-framework van dit project.
 
-## Creating a project
+#### Authenticatie
+Binnen de authenticatie is opgezet dat gebruikers kunnen inloggen via Microsoft. Na het inloggen wordt een auth-token verkregen en wordt deze meegezonden met API-verzoeken naar de backend. Dit zorgt voor een veilige en geauthenticeerde communicatie tussen de frontend en de backend.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installatie
+Om de frontend lokaal te draaien, volg je deze stappen:
 
+#### 1. Zorg ervoor dat Node.js is geïnstalleerd.
+
+#### 2. Clone de repository en navigeer naar de frontend-directory
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git clone https://github.com/freekvlier/sportscentre-frontend.git
+cd sportscentre-frontend
 ```
 
-## Developing
+#### 3. Installeer de packages:
+```bash
+npm install
+```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+#### 4. Start de ontwikkelingsserver:
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+Open je browser en ga naar http://localhost:5000 om de SportsCentre frontend te bekijken.
 
-## Building
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
