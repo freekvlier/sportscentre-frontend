@@ -1,5 +1,5 @@
 # SportsCentre Frontend
-Dit is de frontend van SportsCentre, de sporttracking- en deelapplicatie ontwikkeld als onderdeel van het individuele project tijdens semester 6 van de studie Software Engineering aan Fontys Hogescholen Eindhoven. Het frontend-gedeelte van dit project is niet uitgebreid ontwikkeld, omdat de primaire focus lag op het bouwen van de backend-architectuur. 
+Dit is de frontend van SportsCentre, de sporttracking- en deelapplicatie ontwikkeld als onderdeel van het individuele project tijdens semester 6 (2022-2023) van de studie Software Engineering aan Fontys Hogescholen Eindhoven. Het frontend-gedeelte van dit project is niet uitgebreid ontwikkeld, omdat de primaire focus lag op het bouwen van de backend-architectuur. De backend repository is [hier](https://github.com/freekvlier/sportscentre-backend) te vinden.
 
 ## Technologieën
 #### Frontend Framework: Svelte
